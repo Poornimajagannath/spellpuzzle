@@ -1,4 +1,4 @@
-package edu.gatech.seclass.spellpuzzle;
+package spellpuzzle;
 
 import android.content.ContentValues;
 import android.content.Context;

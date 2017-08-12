@@ -1,4 +1,4 @@
-package edu.gatech.seclass.spellpuzzle;
+package spellpuzzle;
 
 
 public abstract class User {

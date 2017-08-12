@@ -1,4 +1,4 @@
-package edu.gatech.seclass.spellpuzzle;
+package spellpuzzle;
 
 import java.io.Serializable;
 //import edu.gatech.seclass.utilities.ExternalWebService.PlayerRating;

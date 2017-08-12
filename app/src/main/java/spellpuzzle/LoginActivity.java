@@ -1,4 +1,4 @@
-package edu.gatech.seclass.spellpuzzle;
+package spellpuzzle;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -37,7 +37,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.gatech.seclass.sdpcryptogram.R;
+import harry.potter.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
 

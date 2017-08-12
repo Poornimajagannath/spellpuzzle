@@ -1,4 +1,4 @@
-package edu.gatech.seclass.spellpuzzle;
+package spellpuzzle;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import edu.gatech.seclass.sdpcryptogram.R;
+import harry.potter.R;
 import edu.gatech.seclass.utilities.ExternalWebService;
 
 public class FragmentPlayerRatings extends Fragment {

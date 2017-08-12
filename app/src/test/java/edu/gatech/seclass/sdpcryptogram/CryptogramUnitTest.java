@@ -2,7 +2,7 @@ package edu.gatech.seclass.sdpcryptogram;
 
 import org.junit.Test;
 
-import edu.gatech.seclass.spellpuzzle.Cryptogram;
+import spellpuzzle.Cryptogram;
 
 
 public class CryptogramUnitTest {

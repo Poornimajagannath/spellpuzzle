@@ -1,4 +1,4 @@
-package edu.gatech.seclass.spellpuzzle;
+package spellpuzzle;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import edu.gatech.seclass.sdpcryptogram.R;
+import harry.potter.R;
 import edu.gatech.seclass.utilities.ExternalWebService;
 
 

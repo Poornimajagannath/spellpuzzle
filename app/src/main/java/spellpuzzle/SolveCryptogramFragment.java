@@ -1,6 +1,6 @@
-package edu.gatech.seclass.spellpuzzle;
+package spellpuzzle;
 
-import edu.gatech.seclass.sdpcryptogram.R;
+import harry.potter.R;
 import edu.gatech.seclass.utilities.ExternalWebService;
 
 import android.app.Activity;
@@ -68,7 +68,7 @@ public class SolveCryptogramFragment extends Fragment {
         currentCryptogram.setSolved(isSolved);
 //        showMessage(isSolved, currentCryptogram);
         Toast.makeText(getActivity(),"Cryptogram is saved",Toast.LENGTH_SHORT).show();
-        edu.gatech.seclass.spellpuzzle.PlayerRating playerRating = externalWebServiceOld.getPlayerRating(username);
+        spellpuzzle.PlayerRating playerRating = externalWebServiceOld.getPlayerRating(username);
         if (!isSolved) {
             playerRating.setStarted(playerRating.getStarted()+1);
         }
@@ -90,9 +90,9 @@ public class SolveCryptogramFragment extends Fragment {
 
 //        currentPlayer.submitSolution(currentCryptogram);
         externalWebServiceOld.updateCryptogram(currentCryptogram,username);
-        edu.gatech.seclass.spellpuzzle.PlayerRating playerRating = externalWebServiceOld.getPlayerRating(username);
+        spellpuzzle.PlayerRating playerRating = externalWebServiceOld.getPlayerRating(username);
         if (playerRating == null) {
-            playerRating = new edu.gatech.seclass.spellpuzzle.PlayerRating(currentPlayer.getFirstname(), currentPlayer.getLastname(), 0, 0, 0);
+            playerRating = new spellpuzzle.PlayerRating(currentPlayer.getFirstname(), currentPlayer.getLastname(), 0, 0, 0);
         }
         if (isSolved) {
             playerRating.setSolved(playerRating.getSolved()+1);

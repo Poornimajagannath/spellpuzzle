@@ -2,7 +2,7 @@ package edu.gatech.seclass.sdpcryptogram;
 
 import org.junit.Test;
 
-import edu.gatech.seclass.spellpuzzle.CryptogramForPlayer;
+import spellpuzzle.CryptogramForPlayer;
 
 import static org.junit.Assert.*;
 

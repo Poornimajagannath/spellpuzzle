@@ -1,14 +1,11 @@
 package edu.gatech.seclass.sdpcryptogram;
 
-/**
- * Created by Tanner on 7/6/2017.
- */
 
 import org.junit.Test;
 
-import edu.gatech.seclass.spellpuzzle.CryptogramForPlayer;
-import edu.gatech.seclass.spellpuzzle.Player;
-import edu.gatech.seclass.spellpuzzle.PlayerRating;
+import spellpuzzle.CryptogramForPlayer;
+import spellpuzzle.Player;
+import spellpuzzle.PlayerRating;
 import edu.gatech.seclass.utilities.ExternalWebService;
 //import edu.gatech.seclass.utilities.ExternalWebService.PlayerRating;
 

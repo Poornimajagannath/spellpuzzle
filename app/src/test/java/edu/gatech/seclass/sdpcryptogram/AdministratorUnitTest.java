@@ -1,6 +1,6 @@
 package edu.gatech.seclass.sdpcryptogram;
 
-import edu.gatech.seclass.spellpuzzle.Administrator;
+import spellpuzzle.Administrator;
 import edu.gatech.seclass.utilities.ExternalWebService;
 import edu.gatech.seclass.utilities.ExternalWebService.PlayerRating;
 

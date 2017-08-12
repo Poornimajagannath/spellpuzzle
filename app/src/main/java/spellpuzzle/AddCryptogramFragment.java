@@ -1,5 +1,5 @@
-package edu.gatech.seclass.spellpuzzle;
-import edu.gatech.seclass.sdpcryptogram.R;
+package spellpuzzle;
+import harry.potter.R;
 import edu.gatech.seclass.utilities.ExternalWebService;
 
 import android.app.Activity;
