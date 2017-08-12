@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import harry.potter.R;
-import edu.gatech.seclass.utilities.ExternalWebService;
+import spellpuzzle.ExternalWebService;
 
 
 ///**

@@ -1,7 +1,7 @@
 package spellpuzzle;
 
 import harry.potter.R;
-import edu.gatech.seclass.utilities.ExternalWebService;
+import spellpuzzle.ExternalWebService;
 
 import android.app.Activity;
 import android.content.Context;

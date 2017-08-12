@@ -1,7 +1,7 @@
 package spellpuzzle;
 
 import harry.potter.R;
-import edu.gatech.seclass.utilities.ExternalWebService;
+import spellpuzzle.ExternalWebService;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -90,7 +90,7 @@ public class ListSpellFragment extends Fragment {
 
     public void listspell(View view) {
 
-        final List<String[]> spellList = externalWebService.syncCryptogramService();
+        final List<String[]> spellList = externalWebService.syncSpellService();
 
         final List<Spell> cryptList = externalWebServiceOld.fetchspells();
         final Set<String> spellIdSet = new HashSet<>();

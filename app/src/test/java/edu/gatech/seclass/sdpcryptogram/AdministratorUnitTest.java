@@ -1,8 +1,8 @@
 package edu.gatech.seclass.sdpspell;
 
 import spellpuzzle.Administrator;
-import edu.gatech.seclass.utilities.ExternalWebService;
-import edu.gatech.seclass.utilities.ExternalWebService.PlayerRating;
+import spellpuzzle.ExternalWebService;
+import spellpuzzle.ExternalWebService.PlayerRating;
 
 //TODO: delet ths
 public class AdministratorUnitTest {

@@ -20,7 +20,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import harry.potter.R;
-import edu.gatech.seclass.utilities.ExternalWebService;
+import spellpuzzle.ExternalWebService;
 
 public class FragmentPlayerRatings extends Fragment {
     private ExternalWebService externalWebService;

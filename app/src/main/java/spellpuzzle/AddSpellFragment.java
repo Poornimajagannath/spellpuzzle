@@ -1,6 +1,6 @@
 package spellpuzzle;
 import harry.potter.R;
-import edu.gatech.seclass.utilities.ExternalWebService;
+import spellpuzzle.ExternalWebService;
 
 import android.app.Activity;
 import android.content.Context;
@@ -104,7 +104,7 @@ public class AddSpellFragment extends Fragment {
         }
         if (encodedPhraseText != null && solutionPhraseText != null) {
 
-            String id =  externalWebService.addCryptogramService(
+            String id =  externalWebService.addspellService(
                     encodedPhraseText.getText().toString(), solutionPhraseText.getText().toString());
             Log.i(this.toString(), "spell is created external with id " + id);
             Toast.makeText(getActivity(),"Spell was added!" ,Toast.LENGTH_SHORT).show();

@@ -1,7 +1,7 @@
 package spellpuzzle;
 
 import java.io.Serializable;
-//import edu.gatech.seclass.utilities.ExternalWebService.PlayerRating;
+//import spellpuzzle.ExternalWebService.PlayerRating;
 
 public class Player extends User implements Serializable {
 

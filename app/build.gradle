@@ -32,11 +32,7 @@ dependencies {
     // add this for intent mocking support
     
     // add this for webview testing support
-    
-    // I added this to make an error go away. I don't understand why it is needed
-    
-    compile files(
-    'libs/ExternalWebService.jar')
+
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile    'com.android.support:design:26.+'

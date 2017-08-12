@@ -6,8 +6,8 @@ import org.junit.Test;
 import spellpuzzle.SpellForPlayer;
 import spellpuzzle.Player;
 import spellpuzzle.PlayerRating;
-import edu.gatech.seclass.utilities.ExternalWebService;
-//import edu.gatech.seclass.utilities.ExternalWebService.PlayerRating;
+import spellpuzzle.ExternalWebService;
+//import spellpuzzle.ExternalWebService.PlayerRating;
 
 import static org.junit.Assert.*;
 
