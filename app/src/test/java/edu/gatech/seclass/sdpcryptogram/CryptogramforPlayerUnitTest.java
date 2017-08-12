@@ -1,12 +1,12 @@
-package edu.gatech.seclass.sdpcryptogram;
+package edu.gatech.seclass.sdpspell;
 
 import org.junit.Test;
 
-import spellpuzzle.CryptogramForPlayer;
+import spellpuzzle.SpellForPlayer;
 
 import static org.junit.Assert.*;
 
-public class CryptogramforPlayerUnitTest {
+public class spellforPlayerUnitTest {
 
     protected String firstSolution = "Solution1";
     protected String emptySolution = "";
@@ -14,36 +14,36 @@ public class CryptogramforPlayerUnitTest {
 
     @Test
     public void replaceStandard() throws Exception {
-        CryptogramForPlayer cryptogram = new CryptogramForPlayer();
-        cryptogram.setCurrentSolution("zolution1");
+        SpellForPlayer spell = new SpellForPlayer();
+        spell.setCurrentSolution("zolution1");
 
-        assertEquals(cryptogram.getCurrentSolution(),"zolution1");
+        assertEquals(spell.getCurrentSolution(),"zolution1");
     }
 
     @Test
     public void replaceNull() throws Exception {
-        CryptogramForPlayer cryptogram = new CryptogramForPlayer();
-        cryptogram.setCurrentSolution(nullSolution);
+        SpellForPlayer spell = new SpellForPlayer();
+        spell.setCurrentSolution(nullSolution);
 
-        assertEquals(cryptogram.getCurrentSolution(),"");
+        assertEquals(spell.getCurrentSolution(),"");
     }
 
     @Test
     public void replaceEmpty() throws Exception {
-        CryptogramForPlayer cryptogram = new CryptogramForPlayer();
-        cryptogram.setCurrentSolution(emptySolution);
+        SpellForPlayer spell = new SpellForPlayer();
+        spell.setCurrentSolution(emptySolution);
 
-        assertEquals(cryptogram.getCurrentSolution(),"");
+        assertEquals(spell.getCurrentSolution(),"");
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void constructorNull1() throws Exception{
-        CryptogramForPlayer cryptogram = new CryptogramForPlayer(null,false,0,null);
+        SpellForPlayer spell = new SpellForPlayer(null,false,0,null);
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void constructorNull2() throws Exception{
-        CryptogramForPlayer cryptogram = new CryptogramForPlayer("derp",null,0,false);
+        SpellForPlayer spell = new SpellForPlayer("derp",null,0,false);
     }
 
 

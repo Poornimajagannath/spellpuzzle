@@ -5,7 +5,7 @@
 
 
     <TextView
-        android:id="@+id/createanewcryptogram"
+        android:id="@+id/createanewspell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:text="Enter the spell to be encoded:"
-        android:layout_below="@+id/createanewcryptogram"
+        android:layout_below="@+id/createanewspell"
         android:layout_alignStart="@+id/inputPhrase" />
 
     <EditText
@@ -55,7 +55,7 @@
         android:layout_alignStart="@+id/textView" />
 
     <Button
-        android:id="@+id/addCryptogramButton"
+        android:id="@+id/addspellButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SUBMIT"

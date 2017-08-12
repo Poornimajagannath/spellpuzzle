@@ -1,4 +1,4 @@
-package edu.gatech.seclass.sdpcryptogram;
+package edu.gatech.seclass.sdpspell;
 
 public class UserUnitTest {
 

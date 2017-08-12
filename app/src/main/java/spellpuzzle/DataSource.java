@@ -33,17 +33,17 @@ public class DataSource {
         dbHelper.close();
     }
 
-    public Cryptogram write(Cryptogram cryptogram) {
+    public Spell write(Spell spell) {
         SQLiteDatabase dbw = dbHelper.getWritableDatabase();
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put("ENCODED_PHRASE", cryptogram.getEncodedPhrase());
-        values.put("SOLUTION_PHRASE", cryptogram.getSolutionPhrase());
-        values.put("ID", cryptogram.getId());
+        values.put("ENCODED_PHRASE", spell.getEncodedPhrase());
+        values.put("SOLUTION_PHRASE", spell.getSolutionPhrase());
+        values.put("ID", spell.getId());
         // Insert the new row, returning the primary key value of the new row
-        String newRowId = String.valueOf(dbw.insert("CRYPTOGRAM", null, values));
-        cryptogram.setId(newRowId);
-        return cryptogram;
+        String newRowId = String.valueOf(dbw.insert("spell", null, values));
+        spell.setId(newRowId);
+        return spell;
     }
 
     public Player write(Player player) {
@@ -103,8 +103,8 @@ public class DataSource {
                 "USERNAME",
                 "FIRSTNAME",
                 "LASTNAME",
-                "NUM_CRYPTOGRAMS_SOLVED",
-                "NUM_CRYPTOGRAMS_STARTED",
+                "NUM_SPELLS_SOLVED",
+                "NUM_SPELLS_STARTED",
                 "NUM_INCORRECT_SOLUTIONS"
         };
 
@@ -126,11 +126,11 @@ public class DataSource {
 
             String firstname = cursor.getString(cursor.getColumnIndexOrThrow("FIRSTNAME"));
             String lastname = cursor.getString(cursor.getColumnIndexOrThrow("LASTNAME"));
-            int numCryptogramsSolved = cursor.getInt(cursor.getColumnIndexOrThrow("NUM_CRYPTOGRAMS_SOLVED"));
-            int numCryptogramsStarted = cursor.getInt(cursor.getColumnIndexOrThrow("NUM_CRYPTOGRAMS_STARTED"));
+            int numspellsSolved = cursor.getInt(cursor.getColumnIndexOrThrow("NUM_SPELLS_SOLVED"));
+            int numspellsStarted = cursor.getInt(cursor.getColumnIndexOrThrow("NUM_SPELLS_STARTED"));
             int numIncorrectSolutions = cursor.getInt(cursor.getColumnIndexOrThrow("NUM_INCORRECT_SOLUTIONS"));
 
-            playerRating = new PlayerRating(firstname, lastname, numCryptogramsSolved, numCryptogramsStarted, numIncorrectSolutions);
+            playerRating = new PlayerRating(firstname, lastname, numspellsSolved, numspellsStarted, numIncorrectSolutions);
 
             break;
         }
@@ -138,7 +138,7 @@ public class DataSource {
         return playerRating;
     }
 
-    public List<Cryptogram> fetchCryptograms() {
+    public List<Spell> fetchspells() {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String projection[] = {"ID",
@@ -147,7 +147,7 @@ public class DataSource {
 
 
         Cursor cursor = db.query(
-                "CRYPTOGRAM",                     // The table to query
+                "SPELL",                     // The table to query
                 projection,                               // The columns to return
                 null,                                // The columns for the WHERE clause
                 null,                            // The values for the WHERE clause
@@ -156,23 +156,23 @@ public class DataSource {
                 null                                 // The sort order
         );
 
-        Cryptogram cryptogram = null;
-        List<Cryptogram> cryptogramList = new ArrayList<>();
+        Spell spell = null;
+        List<Spell> spellList = new ArrayList<>();
         while(cursor.moveToNext()) {
             String Id = cursor.getString(
                     cursor.getColumnIndexOrThrow("ID"));
             String encodedPhrase = cursor.getString(cursor.getColumnIndexOrThrow("ENCODED_PHRASE"));
             String solutionPhrase =cursor.getString(cursor.getColumnIndexOrThrow("SOLUTION_PHRASE"));
 
-            cryptogram = new Cryptogram();
-            cryptogram.setId(Id);
-            cryptogram.setEncodedPhrase(encodedPhrase);
-            cryptogram.setSolutionPhrase(solutionPhrase);
+            spell = new Spell();
+            spell.setId(Id);
+            spell.setEncodedPhrase(encodedPhrase);
+            spell.setSolutionPhrase(solutionPhrase);
 
-            cryptogramList.add(cryptogram);
-            Log.i(this.toString(), "cryptogram is created fetched id " + cryptogram.getId());
-            Log.i(this.toString(),cryptogram.getEncodedPhrase());
-            Log.i(this.toString(),cryptogram.getSolutionPhrase());
+            spellList.add(spell);
+            Log.i(this.toString(), "spell is created fetched id " + spell.getId());
+            Log.i(this.toString(), spell.getEncodedPhrase());
+            Log.i(this.toString(), spell.getSolutionPhrase());
 
 
 
@@ -182,7 +182,7 @@ public class DataSource {
         }
         cursor.close();
 
-        return cryptogramList;
+        return spellList;
     }
 
     public List<PlayerRating> getSortedPlayerRatings() {
@@ -203,12 +203,12 @@ public class DataSource {
                 "USERNAME",
                 "FIRSTNAME",
                 "LASTNAME",
-                "NUM_CRYPTOGRAMS_SOLVED",
-                "NUM_CRYPTOGRAMS_STARTED",
+                "NUM_SPELLS_SOLVED",
+                "NUM_SPELLS_STARTED",
                 "NUM_INCORRECT_SOLUTIONS"
         };
 
-        String sortOrder = "NUM_CRYPTOGRAMS_SOLVED DESC";
+        String sortOrder = "NUM_SPELLS_SOLVED DESC";
 
         Cursor cursor = db.query(
                 "PLAYERRATINGS", // The table to query
@@ -226,11 +226,11 @@ public class DataSource {
             String username = cursor.getString(cursor.getColumnIndexOrThrow("USERNAME"));
             String firstname = cursor.getString(cursor.getColumnIndexOrThrow("FIRSTNAME"));
             String lastname = cursor.getString(cursor.getColumnIndexOrThrow("LASTNAME"));
-            int numCryptogramsSolved = cursor.getInt(cursor.getColumnIndexOrThrow("NUM_CRYPTOGRAMS_SOLVED"));
-            int numCryptogramsStarted = cursor.getInt(cursor.getColumnIndexOrThrow("NUM_CRYPTOGRAMS_STARTED"));
+            int numspellsSolved = cursor.getInt(cursor.getColumnIndexOrThrow("NUM_SPELLS_SOLVED"));
+            int numspellsStarted = cursor.getInt(cursor.getColumnIndexOrThrow("NUM_SPELLS_STARTED"));
             int numIncorrectSolutions = cursor.getInt(cursor.getColumnIndexOrThrow("NUM_INCORRECT_SOLUTIONS"));
 
-            PlayerRating playerRating = new PlayerRating(firstname, lastname, numCryptogramsSolved, numCryptogramsStarted, numIncorrectSolutions);
+            PlayerRating playerRating = new PlayerRating(firstname, lastname, numspellsSolved, numspellsStarted, numIncorrectSolutions);
 
             playerRatings.add(playerRating);
         }
@@ -249,8 +249,8 @@ public class DataSource {
         playerRatingValues.put("USERNAME", username);
         playerRatingValues.put("FIRSTNAME", playerRating.getFirstname());
         playerRatingValues.put("LASTNAME", playerRating.getLastname());
-        playerRatingValues.put("NUM_CRYPTOGRAMS_SOLVED", playerRating.getSolved());
-        playerRatingValues.put("NUM_CRYPTOGRAMS_STARTED", playerRating.getStarted());
+        playerRatingValues.put("NUM_SPELLS_SOLVED", playerRating.getSolved());
+        playerRatingValues.put("NUM_SPELLS_STARTED", playerRating.getStarted());
         playerRatingValues.put("NUM_INCORRECT_SOLUTIONS", playerRating.getIncorrect());
 
         int id = (int) dbPlayerRatingsWriter.insertWithOnConflict(
@@ -267,34 +267,34 @@ public class DataSource {
         }
     }
 
-    public void updateCryptogramForPlayer(CryptogramForPlayer crypt, String username){
+    public void updatespellForPlayer(SpellForPlayer crypt, String username){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        String where = "CRYPTOGRAM_ID="+crypt.getId();
+        String where = "SPELL_ID="+crypt.getId();
 
         ContentValues cryptValues = new ContentValues();
 
 
         cryptValues.put("USERNAME",username);
-        cryptValues.put("CRYPTOGRAM_ID",crypt.getId());
+        cryptValues.put("SPELL_ID",crypt.getId());
         cryptValues.put("CURRENT_SOLUTION",crypt.getCurrentSolution());
         cryptValues.put("NUM_INCORRECT_SUBMISSIONS",crypt.getNumberOfInCorrectSubmissions());
         cryptValues.put("IS_SOLVED",crypt.isSolved());
 
-        CryptogramForPlayer c = getCryptogramForPlayer(username, crypt.getId());
+        SpellForPlayer c = getspellForPlayer(username, crypt.getId());
         if (c == null) {
-            db.insert("CRYPTOGRAMFORPLAYERS", null, cryptValues);
+            db.insert("SPELLFORPLAYERS", null, cryptValues);
         } else {
-            db.update("CRYPTOGRAMFORPLAYERS",cryptValues,where,null);
+            db.update("SPELLFORPLAYERS",cryptValues,where,null);
         }
 
     }
 
-    public CryptogramForPlayer getCryptogramForPlayer(String username, String cid) {
+    public SpellForPlayer getspellForPlayer(String username, String cid) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         String[] projection = {
                 "ID",
-                "CRYPTOGRAM_ID",
+                "SPELL_ID",
                 "USERNAME",
                 "CURRENT_SOLUTION",
                 "NUM_INCORRECT_SUBMISSIONS",
@@ -303,38 +303,38 @@ public class DataSource {
         };
 
         Cursor cursor = db.query(
-                "CRYPTOGRAMFORPLAYERS", // The table to query
+                "SPELLFORPLAYERS", // The table to query
                 projection, // The columns to return
-                "username=? and CRYPTOGRAM_ID=?", // The columns for the WHERE clause
+                "username=? and SPELL_ID=?", // The columns for the WHERE clause
                 new String[] { username, cid }, // The values for the WHERE clause
                 null, // don't group the rows
                 null, // don't filter by row groups
                 null // The sort order
         );
 
-        CryptogramForPlayer cryptogramForPlayer = null;
+        SpellForPlayer spellForPlayer = null;
 
         while (cursor.moveToNext()) {
-            String cryptogramId = cursor.getString(cursor.getColumnIndexOrThrow("CRYPTOGRAM_ID"));
+            String spellId = cursor.getString(cursor.getColumnIndexOrThrow("SPELL_ID"));
             String currentSolution = cursor.getString(cursor.getColumnIndexOrThrow("CURRENT_SOLUTION"));
             int numIncorrectSubmissions = cursor.getInt(cursor.getColumnIndexOrThrow("NUM_INCORRECT_SUBMISSIONS"));
             boolean isSolved = cursor.getInt(cursor.getColumnIndexOrThrow("IS_SOLVED")) == 1;
 
-            cryptogramForPlayer = new CryptogramForPlayer(cryptogramId,
+            spellForPlayer = new SpellForPlayer(spellId,
                     currentSolution, numIncorrectSubmissions, isSolved);
 
         }
         cursor.close();
 
-        return cryptogramForPlayer;
+        return spellForPlayer;
     }
 
-    public List<CryptogramForPlayer> getListOfCryptograms(String username) {
+    public List<SpellForPlayer> getListOfspells(String username) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         String[] projection = {
                 "ID",
-                "CRYPTOGRAM_ID",
+                "SPELL_ID",
                 "USERNAME",
                 "CURRENT_SOLUTION",
                 "NUM_INCORRECT_SUBMISSIONS",
@@ -343,7 +343,7 @@ public class DataSource {
         };
 
         Cursor cursor = db.query(
-                "CRYPTOGRAMFORPLAYERS", // The table to query
+                "SPELLFORPLAYERS", // The table to query
                 projection, // The columns to return
                 "username=?", // The columns for the WHERE clause
                 new String[] { username }, // The values for the WHERE clause
@@ -352,24 +352,24 @@ public class DataSource {
                 null // The sort order
         );
 
-        List<CryptogramForPlayer> listCryptogramForPlayer = new ArrayList<>();
+        List<SpellForPlayer> listspellForPlayer = new ArrayList<>();
 
         while (cursor.moveToNext()) {
-            String cryptogramId = cursor.getString(cursor.getColumnIndexOrThrow("CRYPTOGRAM_ID"));
+            String spellId = cursor.getString(cursor.getColumnIndexOrThrow("SPELL_ID"));
             String currentSolution = cursor.getString(cursor.getColumnIndexOrThrow("CURRENT_SOLUTION"));
             int numIncorrectSubmissions = cursor.getInt(cursor.getColumnIndexOrThrow("NUM_INCORRECT_SUBMISSIONS"));
             boolean isSolved = cursor.getInt(cursor.getColumnIndexOrThrow("IS_SOLVED")) == 1;
 //            List<String> priorSolutions = convertStringToArray(cursor.getString(cursor.getColumnIndexOrThrow("PRIOR_SOLUTIONS")));
 
-            CryptogramForPlayer cryptogramForPlayer = new CryptogramForPlayer(cryptogramId,
+            SpellForPlayer spellForPlayer = new SpellForPlayer(spellId,
                     currentSolution, numIncorrectSubmissions, isSolved);
 
-            listCryptogramForPlayer.add(cryptogramForPlayer);
+            listspellForPlayer.add(spellForPlayer);
         }
         cursor.close();
 
-        Log.i(this.toString(), "Is this working ? " + listCryptogramForPlayer.size());
-        return listCryptogramForPlayer;
+        Log.i(this.toString(), "Is this working ? " + listspellForPlayer.size());
+        return listspellForPlayer;
     }
 
     public static String strSeparator = " , ";

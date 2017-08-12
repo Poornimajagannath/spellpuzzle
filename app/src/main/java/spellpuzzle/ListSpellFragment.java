@@ -28,22 +28,22 @@ import java.util.Set;
 ///**
 // * A simple {@link Fragment} subclass.
 // * Activities that contain this fragment must implement the
-// * {@link ListCryptogramFragment.OnFragmentInteractionListener} interface
+// * {@link ListSpellFragment.OnFragmentInteractionListener} interface
 // * to handle interaction events.
-// * Use the {@link ListCryptogramFragment#newInstance} factory method to
+// * Use the {@link ListSpellFragment#newInstance} factory method to
 // * create an instance of this fragment.
 // */
-public class ListCryptogramFragment extends Fragment {
+public class ListSpellFragment extends Fragment {
 
     private ExternalWebService externalWebService;
     private ExternalWebServiceOld externalWebServiceOld;
 
-    public ListCryptogramFragment() {
+    public ListSpellFragment() {
         // Required empty public constructor
     }
 
-    public static ListCryptogramFragment newInstance() {
-        ListCryptogramFragment fragment = new ListCryptogramFragment();
+    public static ListSpellFragment newInstance() {
+        ListSpellFragment fragment = new ListSpellFragment();
         return fragment;
     }
 
@@ -52,7 +52,7 @@ public class ListCryptogramFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.fragment_solve_cryptogram);
+//        setContentView(R.layout.fragment_solve_spell);
     }
 
 
@@ -74,7 +74,7 @@ public class ListCryptogramFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        final View inflate = inflater.inflate(R.layout.fragment_solve_cryptogram, container, false);
+        final View inflate = inflater.inflate(R.layout.fragment_solve_spell, container, false);
         externalWebService = ExternalWebService.getInstance();
 
         // write to DB
@@ -82,39 +82,39 @@ public class ListCryptogramFragment extends Fragment {
         externalWebServiceOld = new ExternalWebServiceOld(inflate.getContext());
 
 
-        listCryptogram(inflate);
+        listspell(inflate);
 
 
         return inflate;
     }
 
-    public void listCryptogram(View view) {
+    public void listspell(View view) {
 
-        final List<String[]> cryptogramList = externalWebService.syncCryptogramService();
+        final List<String[]> spellList = externalWebService.syncCryptogramService();
 
-        final List<Cryptogram> cryptList = externalWebServiceOld.fetchCryptograms();
-        final Set<String> cryptogramIdSet = new HashSet<>();
-        for (String[] arr : cryptogramList) {
-            cryptogramIdSet.add(arr[0]);
+        final List<Spell> cryptList = externalWebServiceOld.fetchspells();
+        final Set<String> spellIdSet = new HashSet<>();
+        for (String[] arr : spellList) {
+            spellIdSet.add(arr[0]);
         }
 
-        //Fetch the cryptograms added Locally present in the DB
-        for (Cryptogram cr : cryptList) {
-            if (!cryptogramIdSet.contains(cr.getId())) {
-                cryptogramList.add(cr.toStringArray());
+        //Fetch the spells added Locally present in the DB
+        for (Spell cr : cryptList) {
+            if (!spellIdSet.contains(cr.getId())) {
+                spellList.add(cr.toStringArray());
             }
 
         }
 
-        Log.i(this.toString(),"number of cryptograms in list="+ cryptogramList.size() );
+        Log.i(this.toString(),"number of spells in list="+ spellList.size() );
 
         SharedPreferences sharedPreferences =
                 this.getActivity().getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         final String username = sharedPreferences.getString("Username", "");
 
-        final List<CryptogramForPlayer> cryptogramForPlayerList = externalWebServiceOld.getListOfCryptograms(username);
+        final List<SpellForPlayer> spellForPlayerList = externalWebServiceOld.getListOfspells(username);
 
-        TableLayout tableLayout = (TableLayout) view.findViewById(R.id.tableofcryptogram);
+        TableLayout tableLayout = (TableLayout) view.findViewById(R.id.tableofspell);
         tableLayout.removeAllViews();
 
         TableRow tableHeader = new TableRow(view.getContext());
@@ -159,7 +159,7 @@ public class ListCryptogramFragment extends Fragment {
         Log.i(this.toString(),"Header code done");
 
         //CREATE ROWS
-        for (final String[] cryptogram : cryptogramList){
+        for (final String[] spell : spellList){
             TableRow tableRow = new TableRow(view.getContext());
             tableRow.setClickable(true);
 
@@ -168,7 +168,7 @@ public class ListCryptogramFragment extends Fragment {
             // CREATE COLUMNS
 
             TextView IDView = new TextView(view.getContext());
-            IDView.setText("" + cryptogram[0]);
+            IDView.setText("" + spell[0]);
             IDView.setTextColor(Color.BLUE);
 
             TextView solvedView = new TextView(view.getContext());
@@ -176,15 +176,15 @@ public class ListCryptogramFragment extends Fragment {
 
             TextView incorrectSubmissionsView = new TextView(view.getContext());
             int incorrectSubmissions = 0;
-            Log.i(this.toString(), "list before for" +  cryptogramForPlayerList.size());
+            Log.i(this.toString(), "list before for" +  spellForPlayerList.size());
 
-            for (CryptogramForPlayer cryptogramForPlayer : cryptogramForPlayerList) {
-                Log.i(this.toString(), "id = " +  cryptogramForPlayer.getId() + " isSolved = " + cryptogramForPlayer.isSolved());
-                if (cryptogramForPlayer.getId().equalsIgnoreCase(cryptogram[0])) {
-                    incorrectSubmissions = cryptogramForPlayer.getNumberOfInCorrectSubmissions();
-                    isSolved = cryptogramForPlayer.isSolved();
+            for (SpellForPlayer spellForPlayer : spellForPlayerList) {
+                Log.i(this.toString(), "id = " +  spellForPlayer.getId() + " isSolved = " + spellForPlayer.isSolved());
+                if (spellForPlayer.getId().equalsIgnoreCase(spell[0])) {
+                    incorrectSubmissions = spellForPlayer.getNumberOfInCorrectSubmissions();
+                    isSolved = spellForPlayer.isSolved();
 
-                    Log.i(this.toString(), "marking solved" + cryptogramForPlayer.isSolved());
+                    Log.i(this.toString(), "marking solved" + spellForPlayer.isSolved());
                     break;
                 }
             }
@@ -195,11 +195,11 @@ public class ListCryptogramFragment extends Fragment {
             incorrectSubmissionsView.setTextColor(Color.BLUE);
 
             TextView encodedPhraseView = new TextView(view.getContext());
-            encodedPhraseView.setText(cryptogram[1]);
+            encodedPhraseView.setText(spell[1]);
             encodedPhraseView.setTextColor(Color.BLUE);
 
             TextView solutionPhraseView = new TextView(view.getContext());
-            solutionPhraseView.setText(cryptogram[2]);
+            solutionPhraseView.setText(spell[2]);
             solutionPhraseView.setVisibility(View.GONE);
 
             tableRow.addView(IDView);
@@ -212,8 +212,8 @@ public class ListCryptogramFragment extends Fragment {
                 @Override
             public void onClick(View view) {
                     view.setBackgroundColor(Color.BLUE);
-                    //TODO: pick the right cryptogram and pass it in
-                    //TODO: check if cryptogram has already been started and use that one instead of assuming its new
+                    //TODO: pick the right spell and pass it in
+                    //TODO: check if spell has already been started and use that one instead of assuming its new
                     Player player = externalWebServiceOld.getPlayer(username);
 
                     TableRow t = (TableRow) view;
@@ -228,28 +228,28 @@ public class ListCryptogramFragment extends Fragment {
 
                     Log.i(this.toString(), "table info = " + Arrays.toString(rowInfo));
 
-                    CryptogramForPlayer chosenCryptogram = new CryptogramForPlayer(
+                    SpellForPlayer chosenspell = new SpellForPlayer(
                             rowInfo[0],
                             Boolean.parseBoolean(rowInfo[1]),
                             Integer.parseInt(rowInfo[2]),
                             rowInfo[3]
                     );
-                    chosenCryptogram.setSolutionPhrase(rowInfo[4]);
+                    chosenspell.setSolutionPhrase(rowInfo[4]);
 
 
 
-                    for (CryptogramForPlayer cryptogramForPlayer : cryptogramForPlayerList) {
+                    for (SpellForPlayer spellForPlayer : spellForPlayerList) {
 
-                        if (cryptogramForPlayer.getId().equalsIgnoreCase(chosenCryptogram.getId())) {
-                            chosenCryptogram.setCurrentSolution(cryptogramForPlayer.getCurrentSolution());
-                            Log.i(this.toString(), "marking solved" + cryptogramForPlayer.isSolved());
+                        if (spellForPlayer.getId().equalsIgnoreCase(chosenspell.getId())) {
+                            chosenspell.setCurrentSolution(spellForPlayer.getCurrentSolution());
+                            Log.i(this.toString(), "marking solved" + spellForPlayer.isSolved());
                             break;
                         }
                     }
 
-                    Fragment fragment = new SolveCryptogramFragment();
+                    Fragment fragment = new SolveSpellFragment();
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("chosenCryptogram", chosenCryptogram);
+                    bundle.putSerializable("chosenspell", chosenspell);
                     fragment.setArguments(bundle);
 
                     FragmentManager fm = getActivity().getSupportFragmentManager();
@@ -258,9 +258,9 @@ public class ListCryptogramFragment extends Fragment {
                     ft.replace(R.id.content, fragment);
                     ft.commit();
 
-                    // TODO : USE THE SELECTED CRYPTOGRAM to SOLVE. YOU CAN USE THIS OnClick Listener to change the page to Solve the selected Cryptogram
+                    // TODO : USE THE SELECTED spell to SOLVE. YOU CAN USE THIS OnClick Listener to change the page to Solve the selected Spell
                     // For now, I've just changed color to Blue to demo that it works.
-//                    Fragment fragment = SolveCryptogramFragment.newInstance();
+//                    Fragment fragment = SolveSpellFragment.newInstance();
 //                    FragmentManager fm = getActivity().getSupportFragmentManager();
 //                    FragmentTransaction ft = fm.beginTransaction();
 //                    ft.addToBackStack(null);//TODO: fix backstack (currently goes back to login screen)

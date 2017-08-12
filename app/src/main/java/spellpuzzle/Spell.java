@@ -2,17 +2,17 @@ package spellpuzzle;
 
 
 
-public class Cryptogram {
+public class Spell {
 
     private String encodedPhrase;
     private String solutionPhrase;
     private String id;
 
-    public Cryptogram() {
+    public Spell() {
 
     }
 
-    public Cryptogram(String encodedPhrase, String solutionPhrase) {
+    public Spell(String encodedPhrase, String solutionPhrase) {
         if(encodedPhrase == null || solutionPhrase == null || encodedPhrase == "" || solutionPhrase == ""){
             throw new IllegalArgumentException();
         }
@@ -20,7 +20,7 @@ public class Cryptogram {
         this.solutionPhrase = solutionPhrase;
     }
 
-    public Cryptogram(String id) {
+    public Spell(String id) {
         this.setId(id);
     }
 

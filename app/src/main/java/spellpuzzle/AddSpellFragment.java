@@ -20,21 +20,21 @@ import android.widget.Toast;
 ///**
 // * A simple {@link Fragment} subclass.
 // * Activities that contain this fragment must implement the
-// * {@link AddCryptogramFragment.OnFragmentInteractionListener} interface
+// * {@link AddSpellFragment.OnFragmentInteractionListener} interface
 // * to handle interaction events.
-// * Use the {@link AddCryptogramFragment#newInstance} factory method to
+// * Use the {@link AddSpellFragment#newInstance} factory method to
 // * create an instance of this fragment.
 // */
-public class AddCryptogramFragment extends Fragment {
+public class AddSpellFragment extends Fragment {
     private ExternalWebService externalWebService;
     private ExternalWebServiceOld externalWebServiceOld;
 
-    public AddCryptogramFragment() {
+    public AddSpellFragment() {
         // Required empty public constructor
     }
 
-    public static AddCryptogramFragment newInstance() {
-        AddCryptogramFragment fragment = new AddCryptogramFragment();
+    public static AddSpellFragment newInstance() {
+        AddSpellFragment fragment = new AddSpellFragment();
         return fragment;
     }
     public static void hideKeyboardFrom(Context context, View view) {
@@ -51,25 +51,25 @@ public class AddCryptogramFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View inflate = inflater.inflate(R.layout.fragment_add_cryptogram, container, false);
+        final View inflate = inflater.inflate(R.layout.fragment_add_spell, container, false);
         externalWebService = ExternalWebService.getInstance();
 
         externalWebServiceOld = new ExternalWebServiceOld(inflate.getContext());
 
 
         // Inflate the layout for this fragment
-        Button addCryptogramButton = (Button) inflate.findViewById(R.id.addCryptogramButton);
-        addCryptogramButton.setOnClickListener(new View.OnClickListener() {
+        Button addspellButton = (Button) inflate.findViewById(R.id.addspellButton);
+        addspellButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 hideKeyboardFrom(getContext(),view);
                 try{
-                addCryptogram(inflate);
-//                Toast.makeText(getActivity(),"Cryptogram was added!" ,Toast.LENGTH_SHORT).show();
+                addspell(inflate);
+//                Toast.makeText(getActivity(),"Spell was added!" ,Toast.LENGTH_SHORT).show();
 }
                 catch(IllegalArgumentException e){
                     Log.e(this.toString(),"exception is "+ e);
-                    Toast.makeText(getActivity(),"Invalid Cryptogram,Try again!"+e,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Invalid Spell,Try again!"+e,Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -78,7 +78,7 @@ public class AddCryptogramFragment extends Fragment {
         return inflate;
     }
 
-    public void addCryptogram(View view) {
+    public void addspell(View view) {
         EditText encodedPhraseText = view.findViewById(R.id.inputPhrase);
 
         String sUsername = encodedPhraseText.getText().toString();
@@ -106,17 +106,17 @@ public class AddCryptogramFragment extends Fragment {
 
             String id =  externalWebService.addCryptogramService(
                     encodedPhraseText.getText().toString(), solutionPhraseText.getText().toString());
-            Log.i(this.toString(), "cryptogram is created external with id " + id);
-            Toast.makeText(getActivity(),"Cryptogram was added!" ,Toast.LENGTH_SHORT).show();
-//            Toast.makeText(getActivity(),"Cryptogram was added with ID : " + id ,Toast.LENGTH_SHORT).show();
+            Log.i(this.toString(), "spell is created external with id " + id);
+            Toast.makeText(getActivity(),"Spell was added!" ,Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(),"Spell was added with ID : " + id ,Toast.LENGTH_SHORT).show();
 
 
 
-            externalWebServiceOld.addNewCryptogram(id,
+            externalWebServiceOld.addNewspell(id,
                     encodedPhraseText.getText().toString(), solutionPhraseText.getText().toString());
-            Log.i(this.toString(), "cryptogram is created internal with id " + id + " solution = " + solutionPhraseText.getText().toString());
-            Toast.makeText(getActivity(),"Cryptogram was added!" ,Toast.LENGTH_SHORT).show();
-//            Toast.makeText(getActivity(),"Cryptogram was added with ID : " + id ,Toast.LENGTH_SHORT).show();
+            Log.i(this.toString(), "spell is created internal with id " + id + " solution = " + solutionPhraseText.getText().toString());
+            Toast.makeText(getActivity(),"Spell was added!" ,Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(),"Spell was added with ID : " + id ,Toast.LENGTH_SHORT).show();
         }
     }
 

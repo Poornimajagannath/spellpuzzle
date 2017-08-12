@@ -18,21 +18,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class SolveCryptogramFragment extends Fragment {
+public class SolveSpellFragment extends Fragment {
 
     private static ExternalWebService externalWebService;
     private static ExternalWebServiceOld externalWebServiceOld;
     private static String username;
     private static Player currentPlayer;
 
-    private CryptogramForPlayer currentCryptogram;
+    private SpellForPlayer currentSpell;
 
-    public SolveCryptogramFragment() {
+    public SolveSpellFragment() {
 
     }
 
-    public static SolveCryptogramFragment newInstance() {
-        SolveCryptogramFragment fragment = new SolveCryptogramFragment();
+    public static SolveSpellFragment newInstance() {
+        SolveSpellFragment fragment = new SolveSpellFragment();
         return fragment;
     }
 
@@ -52,27 +52,27 @@ public class SolveCryptogramFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View inflate = inflater.inflate(R.layout.fragment_solve_cryptogram2, container, false);
+        final View inflate = inflater.inflate(R.layout.fragment_solve_spell_new, container, false);
         externalWebService = ExternalWebService.getInstance();
         externalWebServiceOld = new ExternalWebServiceOld(inflate.getContext());
 
-        solveCryptogram(inflate);
+        solvespell(inflate);
         return inflate;
     }
 
     public void onSavePressed() {
         TextView edit = getView().findViewById(R.id.EditSolution);
 
-        currentCryptogram.setCurrentSolution(edit.getText().toString());
-        boolean isSolved = currentCryptogram.getSolutionPhrase().equalsIgnoreCase(currentCryptogram.getCurrentSolution());
-        currentCryptogram.setSolved(isSolved);
-//        showMessage(isSolved, currentCryptogram);
-        Toast.makeText(getActivity(),"Cryptogram is saved",Toast.LENGTH_SHORT).show();
+        currentSpell.setCurrentSolution(edit.getText().toString());
+        boolean isSolved = currentSpell.getSolutionPhrase().equalsIgnoreCase(currentSpell.getCurrentSolution());
+        currentSpell.setSolved(isSolved);
+//        showMessage(isSolved, currentSpell);
+        Toast.makeText(getActivity(),"Spell is saved",Toast.LENGTH_SHORT).show();
         spellpuzzle.PlayerRating playerRating = externalWebServiceOld.getPlayerRating(username);
         if (!isSolved) {
             playerRating.setStarted(playerRating.getStarted()+1);
         }
-        externalWebServiceOld.updateCryptogram(currentCryptogram,username);
+        externalWebServiceOld.updatespell(currentSpell,username);
         externalWebServiceOld.updatePlayerRating(playerRating, username);
         externalWebService.updateRatingService(currentPlayer.getUsername(), currentPlayer.getFirstname(), currentPlayer.getLastname(),
                 playerRating.getSolved(), playerRating.getStarted(), playerRating.getIncorrect());
@@ -80,16 +80,16 @@ public class SolveCryptogramFragment extends Fragment {
 
     public void onSubmitPressed() {
         TextView edit = getView().findViewById(R.id.EditSolution);
-        currentCryptogram.setCurrentSolution(edit.getText().toString());
-        boolean isSolved = currentCryptogram.getSolutionPhrase().equalsIgnoreCase(currentCryptogram.getCurrentSolution());
-        currentCryptogram.setSolved(isSolved);
+        currentSpell.setCurrentSolution(edit.getText().toString());
+        boolean isSolved = currentSpell.getSolutionPhrase().equalsIgnoreCase(currentSpell.getCurrentSolution());
+        currentSpell.setSolved(isSolved);
         if (!isSolved) {
-            currentCryptogram.setNumberOfInCorrectSubmissions(currentCryptogram.getNumberOfInCorrectSubmissions()+1);
+            currentSpell.setNumberOfInCorrectSubmissions(currentSpell.getNumberOfInCorrectSubmissions()+1);
         }
-        showMessage(isSolved, currentCryptogram);
+        showMessage(isSolved, currentSpell);
 
-//        currentPlayer.submitSolution(currentCryptogram);
-        externalWebServiceOld.updateCryptogram(currentCryptogram,username);
+//        currentPlayer.submitSolution(currentSpell);
+        externalWebServiceOld.updatespell(currentSpell,username);
         spellpuzzle.PlayerRating playerRating = externalWebServiceOld.getPlayerRating(username);
         if (playerRating == null) {
             playerRating = new spellpuzzle.PlayerRating(currentPlayer.getFirstname(), currentPlayer.getLastname(), 0, 0, 0);
@@ -104,15 +104,15 @@ public class SolveCryptogramFragment extends Fragment {
                 playerRating.getSolved(), playerRating.getStarted(), playerRating.getIncorrect());
     }
 
-    private void showMessage(boolean isSolved, CryptogramForPlayer currentCryptogram) {
+    private void showMessage(boolean isSolved, SpellForPlayer currentspell) {
         if (isSolved) {
             Toast.makeText(getActivity(),"You solved it!",Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getActivity(),"That's incorrect, please try again.",Toast.LENGTH_SHORT).show();
-            Log.e(this.toString(), "Current soln = " + currentCryptogram.getCurrentSolution() + " actual soln = " + currentCryptogram.getSolutionPhrase());
+            Log.e(this.toString(), "Current soln = " + currentspell.getCurrentSolution() + " actual soln = " + currentspell.getSolutionPhrase());
         }
     }
-    public void solveCryptogram(View view) {
+    public void solvespell(View view) {
 
         hideKeyboardFrom(getContext(),view);
         //Get Player
@@ -121,25 +121,25 @@ public class SolveCryptogramFragment extends Fragment {
         username = sharedPreferences.getString("Username", "");
         currentPlayer = externalWebServiceOld.getPlayer(username);
 
-        //Get Cryptogram
+        //Get Spell
         Bundle bundle = getArguments();
-        currentCryptogram = (CryptogramForPlayer) bundle.getSerializable("chosenCryptogram");
+        currentSpell = (SpellForPlayer) bundle.getSerializable("chosenspell");
 
-        Log.i(this.toString(), " Cryptogram : " + currentCryptogram.getSolutionPhrase());
+        Log.i(this.toString(), " Spell : " + currentSpell.getSolutionPhrase());
         //set ID
-        TextView cryptID = view.findViewById(R.id.CryptogramID);
-        cryptID.setText(currentCryptogram.getId());//why is this a long anyway?
+        TextView cryptID = view.findViewById(R.id.spellID);
+        cryptID.setText(currentSpell.getId());//why is this a long anyway?
 
         //populate encodedphrase
         TextView encoded = view.findViewById(R.id.DisplayEncodedPhrase);
-        encoded.setText(currentCryptogram.getEncodedPhrase());
+        encoded.setText(currentSpell.getEncodedPhrase());
 
         //populate currentsolution
         TextView solution = view.findViewById(R.id.EditSolution);
-        solution.setText(currentCryptogram.getCurrentSolution());
+        solution.setText(currentSpell.getCurrentSolution());
 
         //set up save listener
-        final Button save = view.findViewById(R.id.SaveCryptogram);
+        final Button save = view.findViewById(R.id.Savespell);
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onSavePressed();
@@ -147,7 +147,7 @@ public class SolveCryptogramFragment extends Fragment {
         });
 
         //set up submit listener
-        final Button submit = view.findViewById(R.id.SubmitCryptogram);
+        final Button submit = view.findViewById(R.id.Submitspell);
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onSubmitPressed();

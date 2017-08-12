@@ -19,8 +19,8 @@ public class PlayerOptionsActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;
             switch (item.getItemId()) {
-                case R.id.listcryptogram:
-                    selectedFragment = ListCryptogramFragment.newInstance();
+                case R.id.listspell:
+                    selectedFragment = ListSpellFragment.newInstance();
                     break;
                 case R.id.playerratings:
                     selectedFragment = FragmentPlayerRatings.newInstance();
@@ -44,7 +44,7 @@ public class PlayerOptionsActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().addToBackStack(this.toString());
-        transaction.replace(R.id.content, ListCryptogramFragment.newInstance());
+        transaction.replace(R.id.content, ListSpellFragment.newInstance());
 
         transaction.commit();
     }

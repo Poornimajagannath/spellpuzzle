@@ -13,13 +13,13 @@ public class ExternalWebServiceOld {
         dataSource = new DataSource(context);
     }
 
-    public String addNewCryptogram(
+    public String addNewspell(
             String id,
             final String encodedPhrase,
             final String solutionPhrase
     ) {
         dataSource.open();
-        Cryptogram cr = new Cryptogram(encodedPhrase, solutionPhrase);
+        Spell cr = new Spell(encodedPhrase, solutionPhrase);
         if (id == null) {
             id = UUID.randomUUID().toString();
         }
@@ -41,11 +41,11 @@ public class ExternalWebServiceOld {
     }
 
 
-    public List<Cryptogram> fetchCryptograms() {
+    public List<Spell> fetchspells() {
 
         dataSource.open();
         try {
-            return dataSource.fetchCryptograms();
+            return dataSource.fetchspells();
         } finally {
             dataSource.close();
         }
@@ -60,19 +60,19 @@ public class ExternalWebServiceOld {
         }
     }
 
-    public List<CryptogramForPlayer> getListOfCryptograms(String username) {
+    public List<SpellForPlayer> getListOfspells(String username) {
         dataSource.open();
         try {
-            return dataSource.getListOfCryptograms(username);
+            return dataSource.getListOfspells(username);
         } finally {
             dataSource.close();
         }
     }
 
-    public void updateCryptogram(CryptogramForPlayer crypt, String username){
+    public void updatespell(SpellForPlayer crypt, String username){
         dataSource.open();
         try {
-            dataSource.updateCryptogramForPlayer(crypt,username);
+            dataSource.updatespellForPlayer(crypt,username);
         } finally {
             dataSource.close();
         }

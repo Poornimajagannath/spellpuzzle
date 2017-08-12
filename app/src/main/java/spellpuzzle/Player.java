@@ -28,16 +28,16 @@ public class Player extends User implements Serializable {
         return this.playerRating;
     }
 
-    public boolean submitSolution(CryptogramForPlayer cryptogramForPlayer){
-        if(cryptogramForPlayer == null){
+    public boolean submitSolution(SpellForPlayer spellForPlayer){
+        if(spellForPlayer == null){
             throw new IllegalArgumentException();
         }
-        if(cryptogramForPlayer.getCurrentSolution() == cryptogramForPlayer.getSolutionPhrase()){
-            cryptogramForPlayer.setSolved(true);
+        if(spellForPlayer.getCurrentSolution() == spellForPlayer.getSolutionPhrase()){
+            spellForPlayer.setSolved(true);
             playerRating.setSolved(playerRating.getStarted()+1);
             return true;
         } else{
-            cryptogramForPlayer.setNumberOfInCorrectSubmissions(cryptogramForPlayer.getNumberOfInCorrectSubmissions()+1);
+            spellForPlayer.setNumberOfInCorrectSubmissions(spellForPlayer.getNumberOfInCorrectSubmissions()+1);
             playerRating.setIncorrect(playerRating.getIncorrect()+1);
             return false;
         }

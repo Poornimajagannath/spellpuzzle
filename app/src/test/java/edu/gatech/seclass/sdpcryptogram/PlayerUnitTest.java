@@ -1,9 +1,9 @@
-package edu.gatech.seclass.sdpcryptogram;
+package edu.gatech.seclass.sdpspell;
 
 
 import org.junit.Test;
 
-import spellpuzzle.CryptogramForPlayer;
+import spellpuzzle.SpellForPlayer;
 import spellpuzzle.Player;
 import spellpuzzle.PlayerRating;
 import edu.gatech.seclass.utilities.ExternalWebService;
@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
 
 public class PlayerUnitTest {
     private static ExternalWebService externalWebService = ExternalWebService.getInstance();
-    CryptogramForPlayer crypt = new CryptogramForPlayer();
+    SpellForPlayer crypt = new SpellForPlayer();
     PlayerRating playerRating = new PlayerRating("Bob", "Test", 0, 0, 0);
     Player playa = new Player("Bob","Test","Bobby", playerRating);
 
@@ -64,12 +64,12 @@ public class PlayerUnitTest {
     }
 
    /* @Test
-    public void getListOfSolvedCryptograms_Normal() throws Exception {
+    public void getListOfSolvedspells_Normal() throws Exception {
         fail("Not yet implemented");
     }
 
     @Test
-    public void getListOfSolvedCryptograms_NoSolvedCryptograms() throws Exception {
+    public void getListOfSolvedspells_NoSolvedspells() throws Exception {
         fail("Not yet implemented");
     }
 
@@ -84,27 +84,27 @@ public class PlayerUnitTest {
     }*/
 
 /*    @Test
-    public void ChooseCryptogram_Normal() throws Exception {
+    public void Choosespell_Normal() throws Exception {
 
-        playa.choseCryptogram("12345");//must be existing cryptogram
+        playa.chosespell("12345");//must be existing spell
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void ChooseCryptogram_Null() throws Exception {
+    public void Choosespell_Null() throws Exception {
 
-        playa.choseCryptogram(null);
+        playa.chosespell(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void ChooseCryptogram_Empty() throws Exception {
+    public void Choosespell_Empty() throws Exception {
 
-        playa.choseCryptogram("");
+        playa.chosespell("");
     }
 
     @Test
-    public void ChooseCryptogram_InvalidID() throws Exception {
+    public void Choosespell_InvalidID() throws Exception {
 
-        playa.choseCryptogram("This is probably an ID right?");
+        playa.chosespell("This is probably an ID right?");
     }*/
 
 

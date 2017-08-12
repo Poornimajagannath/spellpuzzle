@@ -1,4 +1,4 @@
-package edu.gatech.seclass.sdpcryptogram;
+package edu.gatech.seclass.sdpspell;
 
 import spellpuzzle.Administrator;
 import edu.gatech.seclass.utilities.ExternalWebService;
@@ -13,28 +13,28 @@ public class AdministratorUnitTest {
             ExternalWebService.getInstance().new PlayerRating("derp","derpina", 0,0,0);
 /*
     @Test
-    public void AddNewCryptogram_Normal() throws Exception {
-        admin.addNewCryptogram(encoded,solution);
+    public void AddNewspell_Normal() throws Exception {
+        admin.addNewspell(encoded,solution);
     }
 
     @Test (expected = IllegalArgumentException.class)
-    public void AddNewCryptogram_NullEncoded() throws Exception {
-        admin.addNewCryptogram(null,solution);
+    public void AddNewspell_NullEncoded() throws Exception {
+        admin.addNewspell(null,solution);
     }
 
     @Test (expected = IllegalArgumentException.class)
-    public void AddNewCryptogram_NullSolution() throws Exception {
-        admin.addNewCryptogram(encoded,null);
+    public void AddNewspell_NullSolution() throws Exception {
+        admin.addNewspell(encoded,null);
     }
 
     @Test (expected = IllegalArgumentException.class)
-    public void AddNewCryptogram_EmptyEncoded() throws Exception {
-        admin.addNewCryptogram("",solution);
+    public void AddNewspell_EmptyEncoded() throws Exception {
+        admin.addNewspell("",solution);
     }
 
     @Test (expected = IllegalArgumentException.class)
-    public void AddNewCryptogram_EmptySolution() throws Exception {
-        admin.addNewCryptogram(encoded,"");
+    public void AddNewspell_EmptySolution() throws Exception {
+        admin.addNewspell(encoded,"");
     }
 
     @Test (expected = IllegalArgumentException.class)

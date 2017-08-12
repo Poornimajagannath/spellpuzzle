@@ -4,23 +4,23 @@ package spellpuzzle;
 import java.io.Serializable;
 import java.util.List;
 
-public class CryptogramForPlayer extends Cryptogram implements Serializable{
+public class SpellForPlayer extends Spell implements Serializable{
 
     private String currentSolution;
     private int numberOfInCorrectSubmissions;
     private boolean isSolved;
     private List<String> priorSolutions;
 
-    public CryptogramForPlayer() {
+    public SpellForPlayer() {
 
     }
 
-    public CryptogramForPlayer(String cryptogramId,
-                               boolean isSolved,
-                               int numberOfInCorrectSubmissions,
-                               String encodedPhrase) {
-        super(cryptogramId);
-        if(cryptogramId == null || encodedPhrase == null){
+    public SpellForPlayer(String spellId,
+                          boolean isSolved,
+                          int numberOfInCorrectSubmissions,
+                          String encodedPhrase) {
+        super(spellId);
+        if(spellId == null || encodedPhrase == null){
             throw new IllegalArgumentException();
         }
         this.currentSolution = currentSolution;
@@ -29,10 +29,10 @@ public class CryptogramForPlayer extends Cryptogram implements Serializable{
         this.setEncodedPhrase(encodedPhrase);
     }
 
-    public CryptogramForPlayer(String cryptogramId, String currentSolution,
-                               int numberOfInCorrectSubmissions, boolean isSolved) {
-        super(cryptogramId);
-        if(cryptogramId == null || currentSolution == null){
+    public SpellForPlayer(String spellId, String currentSolution,
+                          int numberOfInCorrectSubmissions, boolean isSolved) {
+        super(spellId);
+        if(spellId == null || currentSolution == null){
             throw new IllegalArgumentException();
         }
         this.currentSolution = currentSolution;
@@ -40,11 +40,11 @@ public class CryptogramForPlayer extends Cryptogram implements Serializable{
         this.isSolved = isSolved;
     }
 
-    public CryptogramForPlayer(String cryptogramId, String currentSolution,
-                               int numberOfInCorrectSubmissions, boolean isSolved,
-                               List<String> priorSolutions) {
-        super(cryptogramId);
-        if(cryptogramId == null || currentSolution == null){
+    public SpellForPlayer(String spellId, String currentSolution,
+                          int numberOfInCorrectSubmissions, boolean isSolved,
+                          List<String> priorSolutions) {
+        super(spellId);
+        if(spellId == null || currentSolution == null){
             throw new IllegalArgumentException();
         }
         this.currentSolution = currentSolution;

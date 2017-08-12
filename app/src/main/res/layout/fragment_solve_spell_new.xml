@@ -4,11 +4,11 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/CryptogramID"
+        android:id="@+id/spellID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="cryptogram ID goes here" />
+        android:text="spell ID goes here" />
 
     <TextView
         android:id="@+id/EncodedPhrase"
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView4"
         android:layout_marginTop="62dp"
-        android:layout_toStartOf="@+id/CryptogramID"
+        android:layout_toStartOf="@+id/spellID"
         android:text="Encoded Phrase:" />
 
     <TextView
@@ -49,7 +49,7 @@
         android:text="Put Current Solution Here" />
 
     <Button
-        android:id="@+id/SaveCryptogram"
+        android:id="@+id/Savespell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/EditSolution"
@@ -58,12 +58,12 @@
         android:text="Save" />
 
     <Button
-        android:id="@+id/SubmitCryptogram"
+        android:id="@+id/Submitspell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit Cryptogram"
-        android:layout_alignBaseline="@+id/SaveCryptogram"
-        android:layout_alignBottom="@+id/SaveCryptogram"
+        android:text="Submit spell"
+        android:layout_alignBaseline="@+id/Savespell"
+        android:layout_alignBottom="@+id/Savespell"
         android:layout_toEndOf="@+id/CurrentSolution"
         android:layout_marginStart="36dp" />
 

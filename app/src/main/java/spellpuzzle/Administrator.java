@@ -6,11 +6,11 @@ public class Administrator extends User {
 /*
 private ExternalWebService service = new ExternalWebService();
 
-public String addNewCryptogram(
+public String addNewspell(
 final String encodedPhrase,
 final String solutionPhrase
 ) {
-return service.addNewCryptogram(encodedPhrase, solutionPhrase);
+return service.addNewspell(encodedPhrase, solutionPhrase);
 }
 
 

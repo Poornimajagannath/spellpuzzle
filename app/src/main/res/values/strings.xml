@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SDPCryptogram</string>
+    <string name="app_name">SDPspell</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
@@ -15,7 +15,7 @@
         completions."
     </string>
     <string name="title_activity_admin_options">AdminOptionsActivity</string>
-    <string name="title_add_cryptogram">Add Cryptogram</string>
+    <string name="title_add_spell">Add spell</string>
     <string name="title_add_player">Add player</string>
 
     <!-- TODO: Remove or change this placeholder text -->

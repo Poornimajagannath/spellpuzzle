@@ -22,8 +22,8 @@ public class AdminOptionsActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;
             switch (item.getItemId()) {
-                case R.id.add_cryptogram:
-                    selectedFragment = AddCryptogramFragment.newInstance();
+                case R.id.add_spell:
+                    selectedFragment = AddSpellFragment.newInstance();
                     break;
                 case R.id.add_player:
                     selectedFragment = AddPlayerFragment.newInstance();
@@ -48,7 +48,7 @@ public class AdminOptionsActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().addToBackStack(this.toString());
-        transaction.replace(R.id.content,AddCryptogramFragment.newInstance());
+        transaction.replace(R.id.content, AddSpellFragment.newInstance());
         transaction.commit();
     }
 
