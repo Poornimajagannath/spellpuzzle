@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/listcryptogram"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="List Cryptograms" />
+
+    <item
+        android:id="@+id/playerratings"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Player ratings" />
+
+</menu>

@@ -1,0 +1,28 @@
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.gatech.seclass.spellpuzzle.FragmentPlayerRatings">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/table_of_player_ratings"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp">
+    </TableLayout>
+
+
+    <!--android:layout_below="@+id/player_ratings_button"-->
+
+    <!--<Button-->
+        <!--android:id="@+id/player_ratings_button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginBottom="112dp"-->
+        <!--android:text="Player ratings" />-->
+
+</ScrollView>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/CryptogramID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="cryptogram ID goes here" />
+
+    <TextView
+        android:id="@+id/EncodedPhrase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="62dp"
+        android:layout_toStartOf="@+id/CryptogramID"
+        android:text="Encoded Phrase:" />
+
+    <TextView
+        android:id="@+id/DisplayEncodedPhrase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/EncodedPhrase"
+        android:layout_below="@+id/EncodedPhrase"
+        android:layout_marginTop="14dp"
+        android:text="Put Encoded Phrae Here" />
+
+    <TextView
+        android:id="@+id/CurrentSolution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/DisplayEncodedPhrase"
+        android:layout_below="@+id/DisplayEncodedPhrase"
+        android:layout_marginTop="52dp"
+        android:text="Current Solution:" />
+
+    <EditText
+        android:id="@+id/EditSolution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_below="@+id/CurrentSolution"
+        android:layout_alignStart="@+id/CurrentSolution"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Put Current Solution Here" />
+
+    <Button
+        android:id="@+id/SaveCryptogram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/EditSolution"
+        android:layout_below="@+id/EditSolution"
+        android:layout_marginTop="43dp"
+        android:text="Save" />
+
+    <Button
+        android:id="@+id/SubmitCryptogram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit Cryptogram"
+        android:layout_alignBaseline="@+id/SaveCryptogram"
+        android:layout_alignBottom="@+id/SaveCryptogram"
+        android:layout_toEndOf="@+id/CurrentSolution"
+        android:layout_marginStart="36dp" />
+
+</RelativeLayout>
