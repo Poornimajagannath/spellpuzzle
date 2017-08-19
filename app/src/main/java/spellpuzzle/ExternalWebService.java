@@ -8,39 +8,37 @@ import java.util.Map;
 
 public class ExternalWebService {
 
-    //singleton
+
     private static ExternalWebService singleton = null;
 
-    //username, first name, last name, solved #, started #, incorrect #
+
     private static Map<String, PlayerRating> players = new HashMap<>();
 
-    //id, puzzle, solution
+
     private static List<String[]> crypt =  new ArrayList<>();
 
 
-    /**
-     * code block - run once on instantiation - initializes cryptogram list and player list
-     */
-    {
-        //initialize cryptogram list
-        crypt.add(new String[] {"1",
-                "Eyhfx, ugq tsga ykkykkfsydfgsk ywx knxpfcfpyzzu nwgrfvfdxl vu xhxpqdfjx gwlxw sqevxw 12333.",
-                "Maxie, you know assassinations are specifically prohibited by executive order number 12333."});
-        crypt.add(new String[] {"2",
-                "Dsj xyw \"Kayy Fxlzalwgvt Flxu dsj Esxj bsxvj dx dsj Kjyy bsxvj ex rxo wxv'd ivxz Zsjlj G au avw dsjv G abbjal xv dsj Lxxf pjsgvw rxo avw Eolblgej jcjlrxvj\" dlgki.",
-                "The old \"Call Forwarding From the Shoe phone to the Cell phone so you don't know Where I am and then I appear on the Roof behind you and Surprise everyone\" trick."});
-        crypt.add(new String[] {"3",
-                "Gsv Xvmgizo Rmgvoortvmxv Ztvmxb dzh xivzgvw rm 1947 dsvm Kivhrwvmg Gifnzm hrtmvw Gsv Mzgrlmzo Hvxfirgb Zxg.",
-                "The Central Intelligence Agency was created in 1947 when President Truman signed the National Security Act."});
-        crypt.add(new String[] {"4",
-                "Qvd S hiocd pqlb nimmbv qhqt hsmp sm mii, sr sm hqgv'm rie tio kbddcsvn jsdg qvd mpqm kiovmqsv ucskasvn komm, Guiiat-Dii.",
-                "And I would have gotten away with it too, if it wasn't for you meddling kids and that mountain climbing mutt, Scooby-Doo."});
 
-        //players
-        players.put("example555", new PlayerRating("John", "Doe", 2, 3, 5));
-        players.put("example556", new PlayerRating("James", "Bond", 1, 2, 4));
-        players.put("example557", new PlayerRating("George", "Burdell", 3, 4, 2));
-        players.put("example558", new PlayerRating("Nancy", "Drew", 2, 2, 0));
+    {
+
+        crypt.add(new String[] {"1",
+                "gtaeimnAu",
+                "Aguamenti"});
+        crypt.add(new String[] {"2",
+                "haomoolAr",
+                "Alohomora"});
+        crypt.add(new String[] {"3",
+                "aadKvAavrdea",
+                "AvadaKedavra"});
+        crypt.add(new String[] {"4",
+                "Enrigoog",
+                "Engorgio"});
+
+        
+        players.put("eg1", new PlayerRating("Lily", "Evans", 2, 3, 5));
+        players.put("eg2", new PlayerRating("James", "Potter", 1, 2, 4));
+        players.put("eg3", new PlayerRating("Harry", "Potter", 3, 4, 2));
+        players.put("eg4", new PlayerRating("Ron", "Weasley", 2, 2, 0));
     }
 
     protected ExternalWebService() {
@@ -54,7 +52,7 @@ public class ExternalWebService {
         return singleton;
     }
 
-    //inner class, used to make it easier to input/output lists of player ratings
+
     public class PlayerRating{
         String firstname;
         String lastname;
@@ -109,7 +107,7 @@ public class ExternalWebService {
 
 
 
-        //generated
+
         @Override
         public int hashCode() {
             final int prime = 31;
@@ -125,7 +123,7 @@ public class ExternalWebService {
 
 
 
-        //generated
+
         @Override
         public boolean equals(Object obj) {
             if (this == obj)
@@ -158,7 +156,7 @@ public class ExternalWebService {
 
 
 
-        //generated
+
         private ExternalWebService getOuterType() {
             return ExternalWebService.this;
         }
@@ -173,12 +171,12 @@ public class ExternalWebService {
 
         for(String[] st : crypt)
         {
-            //no duplicates
+
             if(puzzle.equals(st[1]) || solution.equals(st[2]))
                 throw new IllegalArgumentException("Duplicate puzzle");
         }
 
-        //validation
+
         if (puzzle.length() != solution.length())
             throw new IllegalArgumentException("Invalid puzzle");
         Map<Character, Character> lettermap = new HashMap<>();
@@ -207,38 +205,23 @@ public class ExternalWebService {
             }
         }
 
-        //add to list
+
         String id = String.valueOf((crypt.size() + 1));
         crypt.add(new String[]{id,puzzle,solution});
         return id;
     }
 
-    /**
-     * get the list of cryptograms
-     * @return list of cryptograms
-     */
+
     public List<String[]> syncSpellService(){
         return crypt;
     }
 
-    /**
-     * Get the list of all player ratings, unordered
-     * @return list of player ratings (PlayerRating contains String firstname, String lastname, int solved, int started, int incorrect)
-     */
+
     public List<PlayerRating> syncRatingService(){
         return new ArrayList<PlayerRating>(players.values());
     }
 
-    /**
-     * input the player username plus parts of one player rating
-     * @param username player username
-     * @param firstname player first name
-     * @param lastname player last name
-     * @param solved total number of cryptograms ever solved
-     * @param started total number of cryptograms ever started/attempted
-     * @param incorrect total number of cryptogram solutions ever submitted incorrectly
-     * @return true if successfully updated or added player rating, false if any values are null or empty or cannot add to player ratings
-     */
+
     public boolean updateRatingService(String username,	String firstname, String lastname, int solved, int started,	int incorrect){
         if(username == null || username.isEmpty() || firstname == null || firstname.isEmpty() || lastname == null || lastname.isEmpty())
             return false;
@@ -248,10 +231,7 @@ public class ExternalWebService {
         return true;
     }
 
-    /**
-     * get list of player usernames, unordered
-     * @return list of player usernames
-     */
+
     public List<String> playernameService(){
         return new ArrayList<String>(players.keySet());
     }
